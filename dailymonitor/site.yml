@@ -1,0 +1,7 @@
+---
+# This playbook deploys daily monitor shell script files to remote node and executes.
+
+- hosts: DM8servers
+
+  roles:
+    - dailymonitorchecks

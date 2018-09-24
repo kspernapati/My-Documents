@@ -1,0 +1,22 @@
+---
+# tasks file for dailymonitor
+
+  tasks:
+   
+   - name: Copying shell scripts to remote node
+     copy: 
+      src: /home/packt/dailymonitory/dailymonitor.sh
+      dest: /home/packt/dailymonitor
+      mode: 0777
+
+   - name: Execute shell command on remote node
+     command: /home/packt/dailymonitor/dailymonitor.sh > dailymonitor.txt
+     register: output
+
+   - debug: var=output.stdout_lines
+   
+   - name: Fetch shell output from remote node
+     fetch: dest=/home/packt/ansible/dailymonitor.txt src=/home/packt/dailymonitor/dailymonitor.txt flat=yes
+
+...
+
